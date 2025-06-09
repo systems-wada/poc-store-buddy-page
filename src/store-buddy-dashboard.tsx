@@ -1002,7 +1002,6 @@ const TalentManagement = () => {
       <div className="max-w-6xl mx-auto">
         <div className="mb-4">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">SVエリアスタッフ表</h2>
-          <p className="text-gray-600">教育管理システムにて明確化された各スタッフの情報を可視化</p>
         </div>
 
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
