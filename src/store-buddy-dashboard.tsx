@@ -41,16 +41,16 @@ const StoreBuddyDashboard = () => {
   const cumulativeSales = data[19].cumulativeSales;
 
   // ウィンドウサイズの監視
-  React.useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+  // React.useEffect(() => {
+  //   const checkScreenSize = () => {
+  //     setIsMobile(window.innerWidth < 768);
+  //   };
     
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
+  //   checkScreenSize();
+  //   window.addEventListener('resize', checkScreenSize);
     
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
+  //   return () => window.removeEventListener('resize', checkScreenSize);
+  // }, []);
 
   const toggleMenu = (menuId: string) => {
     setExpandedMenus(prev => ({
@@ -580,19 +580,19 @@ const StoreBuddyDashboard = () => {
   };
 
   return (
-    <div className="min-h-full bg-gray-50">
+    <div className="bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+      <header className="bg-white shadow-sm border-b border-gray-200 fixed top-0 left-0 right-0 z-50">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
+                className="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
               >
                 <Menu className="h-6 w-6" />
               </button>
-              <h2 className="text-xl font-bold text-gray-900">STORE BUDDY for food　【SV】</h2>
+              <h2 className="sm:text-xl font-bold text-gray-900">STORE BUDDY for food　【SV】</h2>
             </div>
             {/* <div className="flex items-center space-x-4">
               <div className="hidden md:flex items-center space-x-2 bg-gray-100 rounded-full px-4 py-2">
@@ -631,12 +631,11 @@ const StoreBuddyDashboard = () => {
         </div>
       </header>
 
-      <div className="flex">
         {/* Sidebar */}
-        <div className={`${
+        <aside id="sidebar" className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } md:translate-x-0 fixed md:static inset-y-0 left-0 z-30 w-64 bg-white shadow-lg border-r border-gray-200 transition-transform duration-300 ease-in-out overflow-y-auto`}>
-          <div className="p-4">
+        } lg:translate-x-0 transition-transform duration-300 ease-in-out z-40 lg:z-30`}>
+          <div className="pt-20 p-6">
             <div className="flex justify-between items-center mb-6 md:hidden">
               <h2 className="text-lg font-semibold text-gray-900">メニュー</h2>
               <button
@@ -653,23 +652,23 @@ const StoreBuddyDashboard = () => {
               ))}
             </nav>
           </div>
-        </div>
+        {/* </div> */}
+        </aside>
 
         {/* Overlay */}
         {sidebarOpen && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden"
+            className="fixed inset-0 bg-gray-50/75 z-20 md:hidden"
             onClick={() => setSidebarOpen(false)}
           />
         )}
 
         {/* Main Content */}
-        <div className="flex-1 md:ml-0">
-          <main className="p-1 sm:p-2 lg:p-3">
+        <div className="md:p-4">
+          <main className="pt-16 lg:pl-64 min-h-screen">
             {renderContent()}
           </main>
         </div>
-      </div>
     </div>
   );
 };
@@ -950,11 +949,11 @@ const TalentManagement = () => {
 
   // スタッフデータ
   const areaStaffData = [
-{id:1,name:"市川理貴", position:"店長",affiliatedStore:"東野店",acquiredSkills:["QSC","キッチン","ホール","管理"],score:94,inStoreSupportRate:"良好",futureImage:["SV","部長"],},
-{id:2,name:"和田渓扶", position:"社員",affiliatedStore:"東野店",acquiredSkills:["キッチン","ホール"],score:78,inStoreSupportRate:"良好",futureImage:["SV","店長"],},
-{id:3,name:"藤田道彦", position:"P/A",affiliatedStore:"東野店",acquiredSkills:["キッチン"],score:12,inStoreSupportRate:"普通",futureImage:["P/A"],},
-{id:4,name:"船津雄太", position:"店長",affiliatedStore:"舞浜店",acquiredSkills:["QSC","ホール","管理"],score:43,inStoreSupportRate:"課題あり",futureImage:["P/A"],},
-{id:5,name:"船津優菜", position:"社員",affiliatedStore:"舞浜店",acquiredSkills:["QSC","キッチン"],score:33,inStoreSupportRate:"課題あり",futureImage:["社員"],},
+    {id:1,name:"市川理貴", position:"店長",affiliatedStore:"東野店",acquiredSkills:["QSC","キッチン","ホール","管理"],score:94,inStoreSupportRate:"良好",futureImage:["SV","部長"],},
+    {id:2,name:"和田渓扶", position:"社員",affiliatedStore:"東野店",acquiredSkills:["キッチン","ホール"],score:78,inStoreSupportRate:"良好",futureImage:["SV","店長"],},
+    {id:3,name:"藤田道彦", position:"P/A",affiliatedStore:"東野店",acquiredSkills:["キッチン"],score:12,inStoreSupportRate:"普通",futureImage:["P/A"],},
+    {id:4,name:"船津雄太", position:"店長",affiliatedStore:"舞浜店",acquiredSkills:["QSC","ホール","管理"],score:43,inStoreSupportRate:"課題あり",futureImage:["P/A"],},
+    {id:5,name:"船津優菜", position:"社員",affiliatedStore:"舞浜店",acquiredSkills:["QSC","キッチン"],score:33,inStoreSupportRate:"課題あり",futureImage:["社員"],},
   ];
 
   const formatDate = (dateString) => {
