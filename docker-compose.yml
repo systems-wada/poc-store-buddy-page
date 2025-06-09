@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  # Frontend
+  front:
+    build: .
+    container_name: sample
+    tty: true
+    volumes:
+      - ./:/workspaces/poc-store-buddy-page:cached
+    # ports:
+    #   - 5173:5173
+    networks:
+      - poc-api-network
+
+networks:
+  poc-api-network:
+    driver: bridge

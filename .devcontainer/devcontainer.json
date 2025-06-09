@@ -1,0 +1,89 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
+{
+  "name": "SampleSystem API PoC Dev container",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "front",
+  "workspaceFolder": "/workspaces/poc-store-buddy-page",
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [5173],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "java -version",
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.renderControlCharacters": true,
+        "editor.renderWhitespace": "all",
+        "java.compile.nullAnalysis.mode": "automatic",
+        "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+        "java.format.settings.profile": "GoogleStyle",
+        "terminal.integrated.cwd": "${containerWorkspaceFolder}",
+        // デフォルトのフォーマッターに prettier を指定
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        // タブにはスペースを使用
+        "editor.insertSpaces": true,
+        // タブ幅を 2 に設定
+        "editor.tabSize": 2,
+        "files.insertFinalNewline": true,
+        "[java]": {
+          // javaのフォーマッターは prettier を使用しない
+          "editor.defaultFormatter": null
+        },
+        "[javascript]": {
+          "editor.maxTokenizationLineLength": 2500
+        },
+        "[html]": {
+          "editor.suggest.insertMode": "replace"
+        },
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-21",
+            "path": "/opt/java/openjdk",
+            "default": true
+          }
+        ],
+      },
+      "extensions": [
+        "Pleiades.java-extension-pack-jdk",
+        "tombonnike.vscode-status-bar-format-toggle",
+        "mhutchie.git-graph",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "christian-kohler.path-intellisense",
+        "esbenp.prettier-vscode",
+        "redhat.java",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-test",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-java-dependency",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "vscjava.vscode-gradle",
+        "redhat.vscode-xml",
+        "streetsidesoftware.code-spell-checker",
+        "Gruntfuggly.todo-tree",
+        "ritwickdey.LiveServer",
+        "shardulm94.trailing-spaces",
+        "oderwat.indent-rainbow",
+        "mechatroner.rainbow-csv",
+        "ms-azuretools.vscode-docker",
+        "dbaeumer.vscode-eslint",
+        "ms-vsliveshare.vsliveshare",
+        "oracle.oracledevtools"
+      ]
+    }
+  },
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+  "remoteUser": "ubuntu",
+
+  "postCreateCommand": "npm install",
+  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+}
