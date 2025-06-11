@@ -60,6 +60,18 @@ const StoreBuddyDashboard = () => {
     }));
   };
 
+  const calendar = [
+    {date: 5, content: ["会議"], battlePowerList: null},
+    {date:11, content: ["会議"], battlePowerList: [{name:"新橋店", rank: "B"},{name:"新宿店", rank: "S"},{name:"品川店", rank: "D"},]},
+    {date:12, content: ["会議"], battlePowerList: [{name:"新橋店", rank: "A"},{name:"新宿店", rank: "A"},{name:"品川店", rank: "C"},]},
+    {date:13, content: [], battlePowerList: [{name:"新橋店", rank: "C"},{name:"新宿店", rank: "A"},{name:"品川店", rank: "C"},]},
+    {date:14, content: [], battlePowerList: [{name:"新橋店", rank: "S"},{name:"新宿店", rank: "S"},{name:"品川店", rank: "D"},]},
+    {date:15, content: [], battlePowerList: [{name:"新橋店", rank: "B"},{name:"新宿店", rank: "B"},{name:"品川店", rank: "B"},]},
+    {date:16, content: [], battlePowerList: [{name:"新橋店", rank: "D"},{name:"新宿店", rank: "A"},{name:"品川店", rank: "D"},]},
+    {date:17, content: [], battlePowerList: [{name:"新橋店", rank: "B"},{name:"新宿店", rank: "S"},{name:"品川店", rank: "C"},]},
+    {date:25, content: ["会議"], battlePowerList: null},
+  ]
+
   const menuItems = [
     {
       id: 'dashboard',
@@ -305,11 +317,11 @@ const StoreBuddyDashboard = () => {
                 const date = i - 3;
                 const isToday = date === 7;
                 const hasEvent = [5, 12, 18, 25].includes(date);
-                
+                const event = calendar.find(item => item.date === date);
                 return (
                   <div
                     key={i}
-                    className={`p-3 h-20 border rounded ${
+                    className={`p-3 h-40 border rounded ${
                       date < 1 || date > 30 
                         ? 'bg-gray-50 text-gray-300' 
                         : isToday 
@@ -318,11 +330,25 @@ const StoreBuddyDashboard = () => {
                     }`}
                   >
                     <div className="text-sm font-medium">{date > 0 && date <= 30 ? date : ''}</div>
-                    {hasEvent && (
-                      <div className="text-xs bg-blue-500 text-white px-1 py-0.5 rounded mt-1">
-                        会議
-                      </div>
-                    )}
+                    {
+                      event?.battlePowerList && event.battlePowerList.length > 0 && (
+                        <div className="mt-2 mb-2 border border-yellow-300 rounded p-1 bg-yellow-50 shadow-sm">
+                          {event.battlePowerList.map(bp =>
+                            <div className={`text-xs font-medium ${bp.rank === 'C' || bp.rank === 'D'?'bg-red-500' :'bg-green-500'} 
+                              text-white px-1 py-0.5 rounded mt-1`} key={bp.name}>
+                              {bp.name}：{bp.rank}
+                            </div>
+                          )}
+                        </div>
+                      )
+                    }
+                    {
+                      event?.content.map(cont=>
+                        <div className="text-xs bg-blue-500 text-white px-1 py-0.5 rounded mt-1">
+                          {cont}
+                        </div>
+                      )
+                    }
                   </div>
                 );
               })}
