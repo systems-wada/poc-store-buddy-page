@@ -84,8 +84,9 @@ const StoreBuddyDashboard = () => {
       icon: Store,
       label: '店舗運営',
       subItems: [
+        { id: 'idxxx', label: 'アナウンスシステム' },
         { id: 'qsc-rates', label: 'QSC履行率一覧' },
-        { id: 'report-status', label: '報告状況' }
+        { id: 'report-status', label: '各店舗QSC報告状況' }
       ]
     },
     {
